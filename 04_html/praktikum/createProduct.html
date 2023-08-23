@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product Page</title>
+</head>
+<body>
+
+        <h1>Create Product</h1>
+        <h2>Detail Product</h2>
+
+        <form action="">
+            <label for="product-name">Product name:</label>
+        </br>
+        <input type="text" name="product-name" id="product-name" required minlength="6" maxlength="50">
+        </form>
+ <br>
+        <form action="">
+            <label for="product-category">Product category:</label> 
+        </br>
+        <input list="categories" name="" style="width: 4rem;" required>
+        <datalist id="categories">
+            <option value="CAT 1"></option>
+            <option value="CAT 2"></option>
+        </datalist>
+        </form>
+        <br>
+        <label for="product-freshness">Product Freshness:</label>
+        </br>
+
+            <input type="radio" id="brand-new" required>
+            <label for="brand-new">Brand New</label><br>
+            <input type="radio" id="second-hank" required>
+            <label for="second-hank">Second Hank</label><br>
+            <input type="radio" id="refurbished" required>
+            <label for="refurbished">Refurbished</label>
+            
+  <br>
+
+
+        <p>Image of Product <input type="file" name="" id=""></p>
+        
+        <label for="">Additional Description</label>
+        <br>
+        <textarea name="" id="" cols="30" rows="10" required></textarea>
+        <br>
+        <label for="">Product price:</label>
+        <br>
+        <input type="number" placeholder="$100" style="width: 3rem; height: auto; text-align: center;" required>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+
+
+</html>
