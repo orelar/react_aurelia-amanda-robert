@@ -90,9 +90,10 @@
 
     <form
       name="FormCreateProduct"
-      class="container text-left"
+      class="container text-left needs-validation"
       onsubmit="return validationCreateProduct();"
       id="createProduct"
+      novalidate
     >
       <h3>Detail Product</h3>
       <!-- Product name -->
@@ -109,11 +110,13 @@
           name="validationProductName"
           id="validationProductName"
           value=""
+          required
           data-toggle="tooltip"
           data-placement="top"
           title="Enter the product name here"
         />
-        <!-- <div class="valid-feedback">Valid.</div> -->
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
       </div>
 
       <!-- Product Category -->
@@ -126,8 +129,9 @@
         <!-- Adding tooltip  -->
         <select
           name="validationProductCategory"
-          class="form-select rounded-sm"
+          class="form-select rounded-sm is-invalid"
           id="validationProductCategory"
+          required
           data-toggle="tooltip"
           data-placement="top"
           title="Select the product category"
@@ -138,8 +142,8 @@
           <option>Category 3</option>
           <option>Category 4</option>
         </select>
-        <!-- <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please select one.</div> -->
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please select one.</div>
       </div>
 
       <!-- Image of product -->
@@ -155,12 +159,13 @@
           class="form-control btn-primary bg-white text-primary rounded-sm small"
           name="validationImageProduct"
           id="validationImageProduct"
+          required
           data-toggle="tooltip"
           data-placement="top"
           title="Upload an image of the product"
         />
 
-        <!-- <div class="valid-feedback">Successfully upload file!</div> -->
+        <div class="valid-feedback">Successfully upload file!</div>
       </div>
 
       <!-- Product Freshness -->
@@ -173,9 +178,8 @@
             type="radio"
             name="flexRadioDefault"
             id="validationBrandNew"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Brand new freshness"
+            required
+           
           />
           <label class="form-check-label" for="validationBrandNew">
             Brand New
@@ -188,9 +192,7 @@
             type="radio"
             name="flexRadioDefault"
             id="validationSecondHand"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Second hand freshness"
+           
           />
           <label class="form-check-label" for="validationSecondHand">
             Second Hand
@@ -203,15 +205,14 @@
             type="radio"
             name="flexRadioDefault"
             id="validationRefurbished"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Refurbished freshness"
+           
           />
           <label class="form-check-label" for="validationRefurbished">
             Refurbished
           </label>
         </div>
-        <!-- <div class="invalid-feedback">Please select one.</div> -->
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please select one.</div>
       </div>
 
       <!-- Additional Description -->
@@ -227,12 +228,13 @@
           id="validationAdditionalDesc"
           cols="30"
           rows="10"
+          required
           data-toggle="tooltip"
           data-placement="top"
           title="Provide additional details about the product"
         ></textarea>
-        <!-- <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div> -->
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
       </div>
 
       <!-- Product price -->
@@ -247,14 +249,15 @@
           name="validationProductPrice"
           id="validationProductPrice"
           placeholder="$1"
+          required
           data-toggle="tooltip"
           data-placement="top"
           title="Enter the product price"
         />
-        <!-- <div class="valid-feedback">Valid.</div>
+        <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">
           Please fill out the correct price number.
-        </div> -->
+        </div>
       </div>
 
       <div class="text-center">
@@ -266,6 +269,7 @@
           Submit
         </button>
       </div>
+      
     </form>
 
     <div>
@@ -357,5 +361,29 @@
         </form>
       </div>
     </div>
+    <script>
+      (function () {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
   </body>
 </html>

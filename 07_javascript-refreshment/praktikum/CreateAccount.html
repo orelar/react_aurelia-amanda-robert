@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/styleAccount.css" />
+    <script src="./CreateAccount.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Open+Sans&family=Roboto:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Create Account Page JS Refreshment</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <nav class="navbar shadow navbar-expand-md navbar-light bg-white">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"> Simple header </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav nav-pills ml-auto">
+            <li class="active">
+              <a class="nav-link text-white bg-primary" href="landingPage.html"
+                >Home</a
+              >
+            </li>
+            <li><a class="nav-link text-primary" href="#">Features</a></li>
+            <li><a class="nav-link text-primary" href="#">Pricing</a></li>
+            <li><a class="nav-link text-primary" href="#">FAQs</a></li>
+            <li><a class="nav-link text-primary" href="#">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <img
+        src="./assets/bootstrap-logo.svg.png"
+        alt="bootstrap-logo"
+        class="mx-auto d-block m-3"
+      />
+      <h1 class="text-center w-auto">Create Account</h1>
+      <p class="text-center w-auto p-5">
+        Below is an example form built entirely with Bootstrap’s form controls.
+        Each required form group has a validation state that can be triggered by
+        attempting to submit the form without completing it.
+      </p>
+    </div>
+    <form
+      onsubmit="return validationCreateAccount();"
+      class="container text-left needs-validation"
+      novalidate
+      id="createAccount"
+    >
+      <h3>Detail Form</h3>
+
+      <!-- Name -->
+      <div class="mt-3">
+        <div class="row">
+          <div class="col">
+            <label for="validationFirstName">First name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="validationFirstName"
+              id="validationFirstName"
+              required
+            />
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">
+              Please fill the valid first name.
+            </div>
+          </div>
+          <div class="col">
+            <label for="validationLastName">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="validationLastName"
+              id="validationLastName"
+              required
+            />
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">
+              Please fill the valid first name.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Username -->
+      <div class="mt-3">
+        <label for="validationUsername">Username</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <input
+            type="text"
+            class="form-control rounded"
+            name="validationUsername"
+            id="validationUsername"
+            placeholder="Username"
+            required
+          />
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mt-3">
+        <label for="validationEmail" class="font-weight-normal text-center"
+          >Email</label
+        >
+        <input
+          type="text"
+          class="form-control w-100"
+          placeholder="you@example.com"
+          name="validationEmail"
+          id="validationEmail"
+          required
+        />
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+
+      <!-- Gender -->
+      <div class="mt-3">
+        <label for="gender">Gender</label>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="validationMale"
+            required
+          />
+          <label class="form-check-label" for="validationMale"> Male </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="validationFemale"
+            required
+          />
+          <label class="form-check-label" for="validationFemale">
+            Female
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="validationOthers"
+            required
+          />
+          <label class="form-check-label" for="validationOthers">
+            Others
+          </label>
+        </div>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please choose one.</div>
+      </div>
+
+      <!-- Address -->
+      <div class="mt-3">
+        <label for="validationAddress" class="font-weight-normal text-center"
+          >Address</label
+        >
+        <input
+          type="text"
+          class="form-control w-100"
+          name="validationAddress"
+          id="validationAddress"
+          placeholder="1234 Main St"
+          required
+        />
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+
+      <!-- Address 2 -->
+      <div class="mt-3">
+        <label
+          for="validationAddress2"
+          class="font-weight-normal text-center d-flex"
+          >Address 2&nbsp;
+          <span class="text-secondary font-weight-normal"
+            >(Opsional)</span
+          ></label
+        >
+        <input
+          type="text"
+          class="form-control w-100"
+          placeholder="Apartment or suite"
+          name="validationAddress2"
+          id="validationAddress2"
+          required
+        />
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+
+      <!-- Nationality -->
+      <div class="nationality d-flex flex-column mt-4">
+        <label for="validationNationality" class="form-label font-weight-normal"
+          >Nationality</label
+        >
+        <select
+          name="validationNationality"
+          class="form-select rounded-sm border-secondary"
+          id="validationNationality"
+          required
+        >
+          <option selected disabled value="">Choose...</option>
+          <option>Nationality 1</option>
+          <option>Nationality 2</option>
+          <option>Nationality 3</option>
+          <option>Nationality 4</option>
+        </select>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please select one.</div>
+      </div>
+
+      <hr />
+      <!-- Language spoken -->
+      <div class="form-check mb-2">
+        <label>Language Spoken :</label>
+        <div>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="validationLanguage"
+            id="validationBahasa"
+            value="Bahasa"
+            required
+          />
+          <label class="form-check-label" for="validationBahasa">
+            Bahasa Indonesia
+          </label>
+        </div>
+        <div>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="validationLanguage"
+            id="validationEnglish"
+            value="English"
+            required
+          />
+          <label class="form-check-label" for="validationEnglish">
+            English
+          </label>
+        </div>
+        <div>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="validationLanguage"
+            id="validationOther"
+            value="Other"
+            required
+          />
+          <label class="form-check-label" for="validationOther"> Other </label>
+        </div>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Choose at least one!</div>
+      </div>
+
+      <div class="text-center">
+        <button
+          class="w-100 btn btn-primary text-white border-0 py-3 rounded-sm"
+          type="submit"
+          id="submitButton"
+        >
+          Create Account
+        </button>
+      </div>
+    </form>
+
+    <div>
+      <h1 class="text-center">List Account</h1>
+      <div class="table-responsive">
+        <table
+          class="table table-striped"
+          style="width: 60rem; max-width: 100%"
+        >
+          <thead>
+            <tr class="border-top">
+              <th scope="col">No</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Address</th>
+              <th scope="col">Address 2</th>
+              <th scope="col">Nationality</th>
+              <th scope="col">Language</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1,001</th>
+              <td>Lorem</td>
+              <td>ipsum</td>
+              <td>dolor</td>
+              <td>sit</td>
+              <td>adipiscing</td>
+              <td>Elit</td>
+              <td>Elit 2</td>
+              <td>Indonesia</td>
+              <td>Bahasa</td>
+            </tr>
+            <tr>
+              <th scope="row">1,002</th>
+              <td>Lorem</td>
+              <td>ipsum</td>
+              <td>dolor</td>
+              <td>sit</td>
+              <td>adipiscing</td>
+              <td>Elit</td>
+              <td>Elit 2</td>
+              <td>Indonesia</td>
+              <td>Bahasa</td>
+            </tr>
+            <tr>
+              <th scope="row">1,003</th>
+              <td>Lorem</td>
+              <td>ipsum</td>
+              <td>dolor</td>
+              <td>sit</td>
+              <td>adipiscing</td>
+              <td>Elit</td>
+              <td>Elit 2</td>
+              <td>Indonesia</td>
+              <td>Bahasa</td>
+            </tr>
+            <tr>
+              <th scope="row">1,004</th>
+              <td>Lorem</td>
+              <td>ipsum</td>
+              <td>dolor</td>
+              <td>sit</td>
+              <td>adipiscing</td>
+              <td>Elit</td>
+              <td>Elit 2</td>
+              <td>Indonesia</td>
+              <td>Bahasa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mb-4">
+        <form class="needs-validation" novalidate>
+          <input
+            type="text"
+            name="search-username"
+            id="search-username"
+            minlength="1"
+            placeholder="Search by Username"
+            required
+            class="px-2 pe-4 rounded-2 form-control"
+            style="width: 250px"
+          />
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Something wrong</div>
+          <div class="d-flex">
+            <button
+              type="button"
+              class="bg-primary rounded-lg text-white border-0 px-4 py-2"
+            >
+              Deletion
+            </button>
+            <button
+              type="button"
+              class="bg-white text-primary rounded-lg border-2 border-primary px-4 py-2"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Fetch the form that you want to validate
+        var formAccount = document.getElementById("createAccount");
+
+        // Get the language checkboxes
+        var languageCheckboxes = formAccount.querySelectorAll(
+          "input[name='validationLanguage']"
+        );
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              var isLanguageSelected = Array.from(languageCheckboxes).some(
+                function (checkbox) {
+                  return checkbox.checked;
+                }
+              );
+
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>

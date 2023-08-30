@@ -31,14 +31,9 @@ function validationCreateProduct() {
   productFreshnessRefurbished.addEventListener("input", updateButtonState);
   productCategory.addEventListener("change", updateButtonState);
 
-  productName.style.border = "1px solid #ced4da";
-  productCategory.style.border = "1px solid #ced4da";
-  productImage.style.border = "1px solid #ced4da";
-  productAdditionalDesc.style.border = "1px solid #ced4da";
-  productPrice.style.border = "1px solid #ced4da";
-
   if (productName.value == "" || productName.value == null) {
     productName.style.border = "2px solid red";
+    alert("Please fill the Product Name!");
     isValid = false;
   }
 
@@ -48,21 +43,22 @@ function validationCreateProduct() {
     if (productFreshnessInputs[i].checked) {
       isFreshnessChecked = true;
       checkedFreshness = productFreshnessInputs[i].nextElementSibling.textContent.trim();
-      console.log(checkedFreshness);
       break;
     } 
-    if (!productFreshnessInputs[i].checked){
-      productFreshnessInputs[i].style.outline = "2px solid red";
-    }
   }
+  if (checkedFreshness == "") {
+      alert("Please select the Product Freshness!");
+    }
 
   if (productImage.value === "") {
     productImage.style.border = "2px solid red";
+    alert("Please upload file for the Product Image!");
     isValid = false;
   }
 
   if (productCategory.selectedIndex === 0) {
     productCategory.style.border = "2px solid red";
+    alert("Please select the Product Category!");
     isValid = false;
   }
 
@@ -71,11 +67,13 @@ function validationCreateProduct() {
     productAdditionalDesc.value == null
   ) {
     productAdditionalDesc.style.border = "2px solid red";
+    alert("Please fill the Product Additional Description!");
     isValid = false;
   }
 
   if (productPrice.value == "" || productPrice.value == null) {
     productPrice.style.border = "2px solid red";
+    alert("Please fill the Product Price!");
     isValid = false;
   }
 
