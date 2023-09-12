@@ -2,7 +2,7 @@
 
 In this new React material, we will learn about fundamental of React. 🎉 In this material, we'll also learn about how to make essential building blocks of web development, spiced up with a touch of creativity and fun in React.  🎨✨
 
-## Here's my summary of Introduction to React material :sparkles:
+## Here's my summary of React Fundamental material :sparkles:
 
 ### 1. JSX Magic ✨
 
