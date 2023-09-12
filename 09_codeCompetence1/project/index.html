@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./CreateAccount.js"></script>
+
+    <link rel="stylesheet" href="./index.css" />
+    <title>PulseTunes Landing Page</title>
+  </head>
+  <body>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+    <!-- Masonry library -->
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+
+    <!-- Other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to set the height of first-card based on grid-right height
+        function setFirstCardHeight() {
+          // Get the height of grid-right
+          const gridRight = document.getElementById("grid-right").clientHeight;
+
+          // Calculate the new height for first-card (subtract 20px for spacing)
+          const newHeight = gridRight - 20;
+
+          // Set the height of first-card
+          const firstCard = document.getElementById("first-card");
+          firstCard.style.minHeight = newHeight + "px";
+        }
+
+        // Function to reset the height of first-card to auto
+        function resetFirstCardHeight() {
+          const firstCard = document.getElementById("first-card");
+          firstCard.style.minHeight = "auto";
+        }
+
+        // Initial height calculation
+        setFirstCardHeight();
+
+        // Listen for window resize events
+        window.addEventListener("resize", function () {
+          // Check the screen width and adjust the height accordingly
+          if (window.innerWidth < 768) {
+            resetFirstCardHeight(); // Reset to auto height for small screens
+          } else {
+            setFirstCardHeight(); // Set the height based on grid-right for larger screens
+          }
+        });
+
+        const navbarElement = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY >= 56) {
+            navbarElement.classList.add("navbar-scrolled");
+          } else if (window.scrollY < 56) {
+            navbarElement.classList.remove("navbar-scrolled");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      let calcScrollValue = () => {
+        let scrollProgress = document.getElementById("progress");
+        let progressValue = document.getElementById("progress-value");
+        let pos = document.documentElement.scrollTop;
+        let calcHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrollValue = Math.round((pos * 100) / calcHeight);
+
+        // Calculate arrow color based on scrollValue
+        let arrowColor = `#007BFF ${scrollValue}%, #d7d7d7 ${scrollValue}%`;
+
+        if (pos > 100) {
+          scrollProgress.style.display = "grid";
+          if (scrollValue >= 50) {
+            // Arrow is right side up when scrollValue is >= 50
+            progressValue.style.transform = "rotate(0)";
+            scrollProgress.addEventListener("click", () => {
+              document.documentElement.scrollTop = 0; //scroll to top
+            });
+          } else {
+            // Arrow is upside down when scrollValue is < 50
+            progressValue.style.transform = "rotate(180deg)";
+            scrollProgress.addEventListener("click", () => {
+              document.documentElement.scrollIntoView(false); //scroll to bottom
+            });
+          }
+        } else {
+          scrollProgress.style.display = "none";
+        }
+
+        // Set arrow circle border with dynamic color
+        scrollProgress.style.background = `conic-gradient(${arrowColor})`;
+      };
+
+      window.onscroll = calcScrollValue;
+      window.onload = calcScrollValue;
+    </script>
+
+    <div id="progress">
+      <span id="progress-value">&#x1F815;</span>
+    </div>
+
+    <nav
+      class="navbar navbar-light navbar-expand-md navbar-expand-sm sticky-top w-100"
+      id="navbar"
+    >
+      <a class="navbar-brand ml-4" href="#"
+        ><img src="./assets/logo.png" alt="logo" style="width: 1.5rem"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">FAQs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+        </ul>
+        <div>
+          <button type="button" class="btn bg-dark text-white rounded p-2 mr-2">
+            Log in
+          </button>
+          <button type="button" class="btn bg-secondary text-white rounded p-2">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" id="main-content">
+      <div class="grid">
+        <div class="grid-sizer col-md-1" style="height: 100vh"></div>
+
+        <!-- Left side (first-card) -->
+        <div class="grid-item col-md-6 mb-4 row-cols-2">
+          <div
+            class="card"
+            id="first-card"
+            style="min-width: 100%; overflow: hidden; min-height: 16rem"
+          >
+            <div class="card-body w-100" style="z-index: 2">
+              <p class="card-subtitle text-uppercase mb-2">More Offers</p>
+              <h1 class="card-title">There is something else for you</h1>
+            </div>
+            <div class="card-footer" style="position: relative">
+              <img
+                src="./assets/buds-image.png"
+                id="image-first-card"
+                alt="Beats buds"
+                style="
+                  position: absolute;
+                  left: 10rem;
+                  top: -15rem;
+                  width: 20rem; /* Make the image fill the container width */
+                  height: 20rem; /* Make the image fill the container height */
+                  object-fit: cover; /* Crop the image to fit within its dimensions */
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side (second-card, third-card, fourth-card) -->
+        <div class="grid-item col-md-6 mb-4" id="grid-right">
+          <!-- Top right (second-card) -->
+          <div
+            class="card mb-4"
+            id="second-card"
+            style="min-height: 16rem; overflow: hidden"
+          >
+            <!-- Content for the second card -->
+            <div
+              class="card-body w-100"
+              id="second-card-content"
+              style="z-index: 2"
+            >
+              <p class="card-subtitle text-uppercase mb-2">
+                world of hearing technology
+              </p>
+
+              <div
+                class="card-footer"
+                style="
+                  background: transparent;
+                  border: 0;
+                  padding: 0;
+                  position: absolute;
+                  bottom: 0;
+                  width: 100%;
+                "
+              >
+                <img
+                  src="./assets/person-with-headphone.png"
+                  id="image-second-card"
+                  alt=""
+                />
+                <h2>View our blog</h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom right (third-card and fourth-card) -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-4" id="third-card" style="min-height: 16rem">
+                <!-- Content for the third card -->
+                <div class="card-body w-100" id="third-card-content">
+                  <p class="card-subtitle text-uppercase mb-2">
+                    Discover our history
+                  </p>
+                  <div
+                    class="card-footer"
+                    style="
+                      background: transparent;
+                      border: 0;
+                      padding: 0;
+                      position: absolute;
+                      bottom: 0;
+                      width: 100%;
+                    "
+                  >
+                    <h2 class="w-75">About us</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-4" id="fourth-card" style="height: 16rem">
+                <!-- Content for the fourth card -->
+                <div class="card-body w-100" id="fourth-card-content">
+                  <p class="card-subtitle text-uppercase mb-2">
+                    Have some questions?
+                  </p>
+                  <div
+                    class="card-footer"
+                    style="
+                      background: transparent;
+                      border: 0;
+                      padding: 0;
+                      position: absolute;
+                      bottom: 0;
+                      width: 100%;
+                    "
+                  >
+                    <h2 class="w-75">Contact us</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brands section -->
+      <h2 id="section-text">Our Products</h2>
+      <div class="brands mb-4">
+        <div class="brands-slide">
+          <img src="./assets/sony-brand.png" alt="sony" />
+          <img src="./assets/skullcandy-brand.png" alt="skullcandy" />
+          <img src="./assets/sennheiser-brand.png" alt="sennheiser" />
+          <img src="./assets/samsung-brand.png" alt="samsung" />
+          <img src="./assets/jbl-brand.png" alt="jbl" />
+          <img src="./assets/apple-brand.png" alt="apple" />
+          <img src="./assets/beats-brand.png" alt="beats" />
+        </div>
+        <div class="brands-slide">
+          <img src="./assets/sony-brand.png" alt="sony" />
+          <img src="./assets/skullcandy-brand.png" alt="skullcandy" />
+          <img src="./assets/sennheiser-brand.png" alt="sennheiser" />
+          <img src="./assets/samsung-brand.png" alt="samsung" />
+          <img src="./assets/jbl-brand.png" alt="jbl" />
+          <img src="./assets/apple-brand.png" alt="apple" />
+          <img src="./assets/beats-brand.png" alt="beats" />
+        </div>
+      </div>
+
+      <!-- Contact us section -->
+      <h2 id="section-text">Get in touch with us.</h2>
+
+      <div class="container" id="contact-us-section">
+        <form
+          novalidate
+          id="createAccount"
+          onsubmit="return validationCreateAccount();"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <h2>Send us a message</h2>
+              <p>
+                Feel free to contact us, and we will get back to you as soon as
+                possible.
+              </p>
+              <!-- First and last name -->
+              <div class="row mt-3">
+                <div class="col">
+                  <label for="validationFirstName">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="validationFirstName"
+                    id="validationFirstName"
+                    required
+                    placeholder="Jane"
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">
+                    Please provide a valid first name.
+                  </div>
+                </div>
+                <div class="col">
+                  <label for="validationLastName">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="validationLastName"
+                    id="validationLastName"
+                    required
+                    placeholder="Doe"
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">
+                    Please provide a valid last name.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mt-3">
+                <label for="validationEmail" class="font-weight-normal"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  name="validationEmail"
+                  id="validationEmail"
+                  required
+                  placeholder="jane@gmail.com"
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">
+                  Please provide a valid email.
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="mt-3">
+                <label for="validationMessage">Message</label>
+                <textarea
+                  class="form-control"
+                  id="validationMessage"
+                  rows="4"
+                  required
+                  placeholder="Hi Zara, I would like to..."
+                ></textarea>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please provide a message.</div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button
+                  class="btn btn-primary btn-block rounded-sm mb-4"
+                  type="submit"
+                  id="submitButton"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <h2>Contact Us</h2>
+              <h6>Opening hours</h6>
+              <p>Monday - Friday<br />9am - 5pm</p>
+              <h6>Address</h6>
+              <p>
+                123 Jakarta Tower, Jalan Jenderal Sudirman No.123, Jakarta
+                12345, Indonesia
+              </p>
+              <h6>Support</h6>
+              <p>pulsetunes@support.com</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer section -->
+    <div class="mt-4" id="footer">
+      <footer class="row">
+        <div class="col-md-3">
+          <img src="./assets/logo.png" alt="logo" id="logo" />
+          <p class="text-uppercase font-weight-bolder" style="font-size: 2rem">
+            pulsetunes
+          </p>
+          <p id="slogan-footer">
+            Unleash your sound, seize the moment. <br />
+            <strong>Embrace Sonic Freedom</strong>
+          </p>
+        </div>
+
+        <div class="col-md-3" id="explore-footer">
+          <h6>Explore</h6>
+          <ul>
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li>
+              <a href="#">Products</a>
+            </li>
+            <li>
+              <a href="#">Blogs</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h6>Visit</h6>
+          <p id="address-footer">
+            123 Jakarta Tower, Jalan Jenderal Sudirman No.123, Jakarta 12345,
+            Indonesia
+          </p>
+        </div>
+
+        <div class="col-md-3" id="legal-footer">
+          <h6>Legal</h6>
+          <ul>
+            <li>
+              <a href="#">Term</a>
+            </li>
+            <li>
+              <a href="#">Privacy</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+
+      <hr />
+      <div class="row">
+        <div class="col-md-8 col-lg-9 col-xl-10">
+          <p>Created and Designed with &#128151; by Aurelia.</p>
+        </div>
+        <div class="col-md-4 col-lg-3 col-xl-2" id="social-media">
+          <div class="" id="social-media-content">
+            <a
+              href="https://www.linkedin.com/in/aurelia-amanda-robert-19ab441b7/"
+            >
+              <img
+                src="./assets/linkedin-logo.png"
+                alt="Linkedin"
+                class="social-media-icon"
+                id="linkedin"
+              />
+            </a>
+            <a href="https://twitter.com/aureliaamanda24">
+              <img
+                src="./assets/twitter-logo.png"
+                alt="Twitter"
+                class="social-media-icon"
+                id="twitter"
+              />
+            </a>
+            <a href="https://www.instagram.com/aureliarobert24/">
+              <img
+                src="./assets/instagram-logo.png"
+                alt="Instagram"
+                class="social-media-icon"
+                id="instagram"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
