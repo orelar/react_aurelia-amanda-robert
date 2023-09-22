@@ -1,83 +1,158 @@
 import React, { useEffect, useState } from "react";
 
-function FormProduct() {
+function FormProduct({ onAddProduct }) {
   const [input, setInput] = useState("");
-  const [productNameError, setProductNameError] = useState("");
-  const [imageError, setImageError] = useState(null);
-  const [productCategoryError, setProductCategoryError] = useState("");
-  const [productFreshnessError, setProductFreshnessError] = useState("");
+  const [selectedProductCategory, setSelectedProductCategory] = useState("");
+  const [selectedProductFreshness, setSelectedProductFreshness] = useState("");
+  const [inputAdditionalDesc, setInputAdditionalDesc] = useState("");
+  const [inputProductPrice, setInputProductPrice] = useState("");
+  const [error, setError] = useState({
+    productNameError: "",
+    productCategoryError: "",
+    productFreshnessError: "",
+    imageError: "",
+    additionalDescError: "",
+    productPriceError: "",
+  });
 
-  const [additionalDescError, setAdditionalDescError] = useState("");
-  const [productPriceError, setProductPriceError] = useState("");
+
+  function handleInputs(name, value) {
+    setError((err) => ({ ...err, [name]: value }));
+  }
 
   function handleChange(e) {
     e.preventDefault();
-
-    setInput(e.target.value);
-    setProductNameError("");
+    const value = e.target.value;
+    setInput(value);
+    handleInputs("productNameError", "");
   }
 
   function handleImageProductChange(e) {
     if (e.target.files.length > 0) {
-      // Image selected, clear the image error
-      setImageError("");
+      handleInputs("imageError", "");
     } else {
-      setImageError("Image is not found! Please select a file");
+      handleInputs("imageError", "Image is not found! Please select a file");
     }
   }
 
   function handleAdditionalDescChange(e) {
     e.preventDefault();
+    const value = e.target.value;
+    setInputAdditionalDesc(value);
+    handleInputs("additionalDescError", "");
+  }
 
-    setInput(e.target.value);
-    setAdditionalDescError("");
+  function handleProductCategoryChange(e) {
+    const value = e.target.value;
+    setSelectedProductCategory(value);
+    handleInputs("productCategoryError", "");
+  }
+
+  function handleProductFreshnessChange(e) {
+    const value = e.target.value;
+  setSelectedProductFreshness(value);
+  handleInputs("productFreshnessError", "");
   }
 
   function handleProductPriceChange(e) {
     const priceValue = e.target.value;
-
-    // Update the input value
-    setInput(priceValue);
-    setProductPriceError("");
-  }
-
-  function handleProductCategoryChange(e) {
-    setProductCategoryError("");
+    setInputProductPrice(priceValue);
+    handleInputs("productPriceError", "");
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (input.length <= 0) {
-      setProductNameError(
+    let isValid = false;
+    console.log("Form submitted"); // Add this line for debugging
+
+
+    if (!input) {
+      handleInputs(
+        "productNameError",
         "Product Name is empty! Please fill the Product Name"
       );
+      handleInputs("imageError", "Image is not found! Please select a file");
+      handleInputs(
+        "productCategoryError",
+        "Product Category is empty! Please select one!"
+      );
+      handleInputs(
+        "productFreshnessError",
+        "Product Freshness is empty! Please select one!"
+      );
+      isValid = false;
+    } else {
+      handleInputs("productNameError", "");
+      handleInputs("imageError", "");
+      handleInputs("productCategoryError", "");
+      handleInputs("productFreshnessError", "");
+      isValid = true;
     }
 
     if (input === "" || input === null) {
-      setAdditionalDescError(
+      handleInputs(
+        "additionalDescError",
         "Additional Desc is empty! Please fill the Additional Desc"
       );
-    }
-    if (!input.trim() || parseFloat(input) < 0) {
-      setProductPriceError(
-        "Product Price is empty! Please fill the Product Price"
-      );
+      isValid = false;
     }
 
-    if (!input) {
-      setImageError("Image is not found! Please select a file");
-      setProductCategoryError("Product Category is empty! Please select one!");
-      setProductFreshnessError(
-        "Product Freshness is empty! Please select one!"
+    if (input.length > 25) {
+      handleInputs(
+        "productNameError",
+        "Product Name must not exceed 25 characters"
       );
+      isValid = false;
+    } else if (input.length > 10 && input.length < 25) {
+      handleInputs(
+        "productNameError",
+        "Product Name must not exceed 10 characters"
+      );
+      isValid = false;
+    }
+
+    if (!input.trim() || parseFloat(input) < 0) {
+      handleInputs(
+        "productPriceError",
+        "Product Price is empty! Please fill the Product Price"
+      );
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+
+    // If there are no errors and no empty fields, add the product
+    const newProduct = {
+      productName: input,
+      productCategory: selectedProductCategory,
+      productFreshness: selectedProductFreshness,
+      additionalDesc: inputAdditionalDesc,
+      productPrice: parseFloat(inputProductPrice),
+    };
+
+    if (isValid) {
+      onAddProduct(newProduct);
+      // Reset the form
+      e.target.reset();
+      setInput("");
+      setSelectedProductCategory("");
+      setSelectedProductFreshness("");
+      setInputAdditionalDesc("");
+      setInputProductPrice("");
     }
   }
 
   useEffect(() => {
     if (input.length > 25) {
-      setProductNameError("Product Name must not exceed 25 characters");
+      handleInputs(
+        "productNameError",
+        "Product Name must not exceed 25 characters"
+      );
     } else if (input.length > 10 && input.length < 25) {
-      setProductNameError("Product Name must not exceed 10 characters");
+      handleInputs(
+        "productNameError",
+        "Product Name must not exceed 10 characters"
+      );
     }
   }, [input]);
   return (
@@ -101,12 +176,10 @@ function FormProduct() {
           >
             Product name
           </label>
-          {/* Adding tooltip  */}
-
           <input
             type="text"
             className={`form-control w-100 ${
-              productNameError ? "is-invalid" : input ? "is-valid" : ""
+              error.productNameError ? "is-invalid" : input ? "is-valid" : ""
             }`}
             name="validationProductName"
             id="validationProductName"
@@ -117,8 +190,8 @@ function FormProduct() {
             onChange={(e) => handleChange(e)}
           />
           <div className="valid-feedback">Valid.</div>
-          {productNameError && (
-            <div className="error-feedback">{productNameError}</div>
+          {error.productNameError && (
+            <div className="error-feedback">{error.productNameError}</div>
           )}
         </div>
         {/* Product Category */}
@@ -129,11 +202,14 @@ function FormProduct() {
           >
             Product category
           </label>
-          {/* Adding tooltip  */}
           <select
             name="validationProductCategory"
             className={`form-select rounded-sm w-100 ${
-              productCategoryError ? "is-invalid" : input ? "is-valid" : ""
+              error.productCategoryError
+                ? "is-invalid"
+                : input
+                ? "is-valid"
+                : ""
             }`}
             id="validationProductCategory"
             required=""
@@ -153,23 +229,24 @@ function FormProduct() {
             <option value="Category 4">Category 4</option>
           </select>
           <div className="valid-feedback">Valid.</div>
-          {productCategoryError && (
-            <div className="error-feedback">{productCategoryError}</div>
+          {error.productCategoryError && (
+            <div className="error-feedback">{error.productCategoryError}</div>
           )}
         </div>
         {/* Image of product */}
         <div
-          className={`image-product mt-3 ${imageError ? "error-border" : ""}`}
+          className={`image-product mt-3 ${
+            error.imageError ? "error-border" : ""
+          }`}
         >
           <label
             htmlFor="validationImageProduct"
             className={`form-label font-weight-normal w-100 ${
-              imageError ? "is-invalid" : input ? "is-valid" : ""
+              error.imageError ? "is-invalid" : input ? "is-valid" : ""
             }`}
           >
             Image of product
           </label>
-          {/* Adding tooltip */}
           <input
             type="file"
             className="form-control btn-primary bg-white text-primary rounded-sm small"
@@ -184,57 +261,62 @@ function FormProduct() {
             }}
           />
           <div className="valid-feedback">Successfully upload file!</div>
-          {imageError && <div className="error-feedback">{imageError}</div>}
+          {error.imageError && (
+            <div className="error-feedback">{error.imageError}</div>
+          )}
         </div>
         {/* Product Freshness */}
         <div className="mt-3">
           <label htmlFor="product-freshness">Product Freshness</label>
           <div className="form-check" id="validationProductFreshness">
-            {/* Adding tooltip  */}
             <input
               className="form-check-input"
               type="radio"
-              name="flexRadioDefault"
+              name="productFreshness"
               id="validationBrandNew"
               required=""
               value="Brand New"
-              onChange={(e) => setProductFreshnessError(e.target.value)}
+              onChange={(e) => {
+                handleProductFreshnessChange(e);
+              }}
             />
             <label className="form-check-label" htmlFor="validationBrandNew">
               Brand New
             </label>
           </div>
           <div className="form-check">
-            {/* Adding tooltip  */}
             <input
               className="form-check-input"
               type="radio"
-              name="flexRadioDefault"
+              name="productFreshness"
               id="validationSecondHand"
               value="Second Hand"
-              onChange={(e) => setProductFreshnessError(e.target.value)}
+              onChange={(e) => {
+                handleProductFreshnessChange(e);
+              }}
             />
             <label className="form-check-label" htmlFor="validationSecondHand">
               Second Hand
             </label>
           </div>
           <div className="form-check">
-            {/* Adding tooltip  */}
             <input
               className="form-check-input"
               type="radio"
-              name="flexRadioDefault"
+              name="productFreshness"
               id="validationRefurbished"
               value="Refurbished"
-              onChange={(e) => setProductFreshnessError(e.target.value)}
+              onChange={(e) => {
+                handleProductFreshnessChange(e);
+              }}
             />
             <label className="form-check-label" htmlFor="validationRefurbished">
               Refurbished
             </label>
           </div>
           <div className="valid-feedback">Valid.</div>
-          {productFreshnessError && (
-            <div className="error-feedback">{productFreshnessError}</div>
+          {error.productFreshnessError && (
+            <div className="error-feedback">{error.productFreshnessError}</div>
           )}
         </div>
         {/* Additional Description */}
@@ -242,11 +324,10 @@ function FormProduct() {
           <label htmlFor="validationAdditionalDesc" className="form-label">
             Additional Description
           </label>
-          {/* Adding tooltip  */}
           <textarea
             type="text"
             className={`form-control w-100 ${
-              additionalDescError ? "is-invalid" : input ? "is-valid" : ""
+              error.additionalDescError ? "is-invalid" : input ? "is-valid" : ""
             }`}
             name="validationAdditionalDesc"
             id="validationAdditionalDesc"
@@ -260,8 +341,8 @@ function FormProduct() {
             onChange={(e) => handleAdditionalDescChange(e)}
           />
           <div className="valid-feedback">Valid.</div>
-          {additionalDescError && (
-            <div className="error-feedback">{additionalDescError}</div>
+          {error.additionalDescError && (
+            <div className="error-feedback">{error.additionalDescError}</div>
           )}
         </div>
         {/* Product price */}
@@ -269,11 +350,10 @@ function FormProduct() {
           <label htmlFor="validationProductPrice" className="form-label">
             Product Price
           </label>
-          {/* Adding tooltip  */}
           <input
             type="number"
             className={`form-control pl-4 w-100 ${
-              productPriceError ? "is-invalid" : input ? "is-valid" : ""
+              error.productPriceError ? "is-invalid" : input ? "is-valid" : ""
             }`}
             name="validationProductPrice"
             id="validationProductPrice"
@@ -287,8 +367,8 @@ function FormProduct() {
             }}
           />
           <div className="valid-feedback">Valid.</div>
-          {productPriceError && (
-            <div className="error-feedback">{productPriceError}</div>
+          {error.productPriceError && (
+            <div className="error-feedback">{error.productPriceError}</div>
           )}
         </div>
 
