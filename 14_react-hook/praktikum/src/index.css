@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Jost;
+}
+
+#nav-link {
+  font-family: 'Roboto', sans-serif;
+}
+
+#nav-brand {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container img {
+  padding-top: 3rem;
+}
+
+#nav-content {
+  padding: 0 10px;
+}
+
+.active {
+  padding: auto;
+}
+
+#nav-link{
+  
+}
+
+#nav-link:hover {
+  background-color: #0d6efd;
+  color: white !important;
+}
+
+/* Remove unwanted whitespace */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Remove unnecessary underline on links */
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+/* Remove unnecessary bullet point for unordered list */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#submitButton {
+  font-size: larger;
+}
+
+span {
+  font-weight: bold;
+}
+
+p {
+  font-weight: 300 !important;
+  line-height: 30px;
+}
+
+#createProduct {
+  padding: 0 8rem;
+}
+
+input[type="file"]::file-selector-button {
+  background: #0d6efd;
+  border: 0;
+  color: white;
+}
+
+.image-product > .form-control {
+  padding: 0;
+  height: auto;
+  width: 15rem;
+}
+
+
+.text-center button {
+  margin-top: 4rem;
+}
+
+.product-category > select {
+  width: 20rem;
+  height: 2.5rem;
+}
+
+
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 20% 0;
+  }
+
+  form {
+    padding: 0 0.5rem;
+  }
+
+  .text-center button {
+    margin-top: 5rem;
+  }
+
+  #createProduct {
+    padding: 0 3rem;
+  }
+
+  .product-category > select {
+    max-width: 6rem;
+  }
+
+  .navbar {
+    text-align: center;
+  }
+
+}
+
+.error-feedback {
+  background-color: #ffdddd; /* Red background color */
+  border: 1px solid #ff0000; /* Red border */
+  color: #ff0000; /* Red text color */
+  padding: 5px; /* Padding for the box */
+  margin-top: 5px; /* Spacing between the input and the error box */
+}
+
+.error-border input[type="file"] {
+  border: 1px solid red !important;
+}
