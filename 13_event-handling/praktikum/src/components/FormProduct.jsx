@@ -63,7 +63,6 @@ function FormProduct({ onAddProduct }) {
   function handleSubmit(e) {
     e.preventDefault();
     let isValid = false;
-    console.log("Form submitted"); // Add this line for debugging
 
 
     if (!input) {
