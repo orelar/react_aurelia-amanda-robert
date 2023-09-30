@@ -1,0 +1,339 @@
+* {
+  font-family: "Manrope";
+  padding: 0;
+  margin: 0;
+}
+
+#legal-footer > ul li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#explore-footer > ul li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+#navbar {
+  background-color: transparent !important;
+}
+
+#navbar a img {
+  filter: invert(99%) sepia(58%) saturate(175%) hue-rotate(270deg)
+    brightness(112%) contrast(100%);
+}
+
+#navbar li a {
+  color: black;
+}
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-scrolled li a {
+  color: #ffffff !important;
+}
+
+.navbar {
+  transition: all ease-out 0.5s;
+}
+
+body {
+  background-image: radial-gradient(#d5d6da 12%, #eeeff3 0%);
+  background-position: 0 0;
+  background-size: 90px 90px; /* Adjust the values as needed */
+}
+
+#first-card {
+  border-radius: 25px;
+  background-color: #262626;
+  color: #eeeff3;
+}
+
+#second-card {
+  border-radius: 25px;
+  background-color: #d7d8dc;
+  color: #262626;
+}
+
+#third-card {
+  border-radius: 25px;
+  background-color: #b386fd;
+  color: #eeeff3;
+}
+
+#fourth-card {
+  border-radius: 25px;
+  background-color: #b1f041;
+  color: #262626;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.brands {
+  overflow: hidden;
+  padding: 60px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+}
+
+.brands:hover .brands-slide {
+  animation-play-state: paused;
+}
+
+.brands-slide {
+  display: inline-block;
+  animation: 15s slide infinite linear;
+}
+
+.brands-slide img {
+  height: 50px;
+  margin: 0 40px;
+}
+
+#section-text {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#contact-us-section {
+  background-color: #262626;
+  color: white;
+}
+
+/* Style for the scroll to top button */
+.scroll-to-top-button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  cursor: pointer;
+  outline: none;
+  border: transparent;
+}
+
+.scroll-border {
+  transition: stroke 0.3s ease;
+}
+
+.scroll-arrow {
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.scroll-to-top-button:hover .scroll-border {
+  stroke: #007bff;
+}
+
+.scroll-to-top-button.active .scroll-arrow {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  left: 50%;
+  top: 50%;
+}
+
+#progress {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  height: 70px;
+  width: 70px;
+  display: none;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 99;
+}
+
+#progress-value {
+  display: block;
+  height: calc(100% - 15px);
+  width: calc(100% - 15px);
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  color: #001a2e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#footer ul {
+  list-style: none;
+}
+
+#footer ul li a {
+  color: white;
+  font-size: 20px;
+}
+
+#footer ul li a:hover {
+  color: #007bff;
+  transition: all 0.5ms ease-in;
+}
+
+#footer h6 {
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+#footer > hr {
+  background-color: white;
+}
+
+#footer {
+  padding: 3rem;
+  margin: 0;
+  height: auto;
+  background-color: #262626;
+  color: white;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: relative;
+  width: 100%;
+}
+
+#white-headphone {
+  width: 100%;
+  height: auto;
+}
+
+#logo {
+  width: 12%;
+  margin-bottom: 1rem;
+}
+
+#slogan-footer {
+  font-size: 20px;
+  width: 80%;
+}
+
+#address-footer {
+  font-size: 20px;
+  width: 80%;
+}
+
+#linkedin {
+  width: 3%;
+  height: 3%;
+}
+
+#twitter {
+  width: 3%;
+  height: 3%;
+  margin-left: 1rem;
+}
+
+#instagram {
+  width: 3%;
+  height: 3%;
+  margin-left: 1rem;
+}
+
+
+#social-media-content > a {
+  width: 3rem;
+}
+
+#social-media-content > a img {
+  width: 2rem;
+  z-index: 99;
+}
+
+.social-media-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+#image-second-card {
+  position: absolute;
+  left: 12rem;
+  top: -15rem;
+  width: 20rem; /* Make the image fill the container width */
+  height: auto; /* Make the image fill the container height */
+  object-fit: cover; /* Crop the image to fit within its dimensions */
+}
+
+#image-first-card {
+  position: absolute;
+  left: 10rem;
+  top: -15rem;
+  width: 20rem; /* Make the image fill the container width */
+  height: 20rem; /* Make the image fill the container height */
+  object-fit: cover; /* Crop the image to fit within its dimensions */
+}
+
+
+.navbar-toggler{
+  border: 2px solid #686868 !important;
+
+}
+
+@media screen and (max-width: 768px) {
+  #image-first-card {
+    position: absolute;
+    left: 10rem;
+    top: -1rem;
+    width: 20rem; /* Make the image fill the container width */
+    height: auto; /* Make the image fill the container height */
+    object-fit: cover; /* Crop the image to fit within its dimensions */
+  }
+  #image-second-card {
+    left: 10rem;
+    top: -15rem;
+    width: 20rem; /* Make the image fill the container width */
+    height: auto; /* Make the image fill the container height */
+    object-fit: cover; /* Crop the image to fit within its dimensions */
+  }
+
+  #footer ul li a {
+    font-size: 18px;
+  }
+
+  #footer h6 {
+    font-size: 20px;
+  }
+
+  #slogan-footer {
+    font-size: 18px;
+    width: 60%;
+  }
+
+  #address-footer {
+    font-size: 18px;
+    width: 60%;
+  }
+}
